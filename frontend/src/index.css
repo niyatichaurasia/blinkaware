@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Manrope', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+:root {
+  --background: #020617;
+  --foreground: #e2e8f0;
+  --border: #1e293b;
+
+  --primary: #3b82f6;
+  --secondary: #8b5cf6;
+
+  --muted: #0f172a;
+  --card: #020617;
+}

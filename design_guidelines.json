@@ -1,0 +1,75 @@
+{
+  "project_name": "BlinkAware",
+  "theme": "dark",
+  "archetype": "Archetype 4 (Swiss & High Contrast - Dark Mode) fused with Archetype 7 (Electric & Neon Accents)",
+  "emotional_tone": "Futuristic, premium, protective, and highly focused. Linear/Vercel-inspired 'Godly' UI.",
+  "typography": {
+    "heading_font": "Outfit",
+    "body_font": "Manrope",
+    "notes": "Outfit for strong, clean geometric headings that feel technical yet premium. Manrope for highly legible dashboard metrics and body copy. Never use Inter for headings. Keep headings tight with tracking-tight."
+  },
+  "colors": {
+    "background_base": "#050505",
+    "surface_card": "#111111",
+    "surface_glass": "bg-black/60 backdrop-blur-2xl backdrop-saturate-150",
+    "border_subtle": "border-white/10",
+    "border_highlight": "border-white/20",
+    "primary_gradient": "bg-gradient-to-r from-blue-500 to-purple-600",
+    "primary_color": "#3B82F6",
+    "accent_color": "#8B5CF6",
+    "status": {
+      "normal": "#10B981",
+      "warning": "#F59E0B",
+      "drowsy": "#EF4444"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A1A1AA",
+      "tertiary": "#71717A"
+    }
+  },
+  "layout_and_spacing": {
+    "dashboard_grid": "Mode B: The Control Room Grid. Base Grid: grid-cols-1 md:grid-cols-3 lg:grid-cols-4. Tight gaps (gap-4 or gap-6).",
+    "container_padding": "Use generous internal padding for cards (p-6).",
+    "page_padding": "px-6 py-8 md:px-12 md:py-12"
+  },
+  "surfaces_and_microthemes": {
+    "header": "Crystal Glass Variant. bg-black/60 backdrop-blur-xl border-b border-white/10. Sticky top.",
+    "dashboard_cards": "Neumorphic/Technical blend. Flat solid background (#111111), 1px subtle border (border-white/10), no default shadow. Hover state: subtle lift (-translate-y-1), border-white/20, faint inner glow. Rounded corners: rounded-2xl.",
+    "webcam_feed_container": "The Tracing Beam Variant. Container must have a glowing edge or technical SVG corner brackets. Overflow-hidden, rounded-3xl, with a glassmorphic overlay for tracking state.",
+    "floating_notifications": "Glassmorphism. backdrop-blur-xl bg-[#111111]/90 border border-white/10 shadow-2xl."
+  },
+  "components": {
+    "webcam_overlay": "HTML5 Video element with a stylish absolute positioned overlay. Add framer-motion SVG crosshairs or an animated Face/Eye tracking box outline that subtly pulses.",
+    "blink_counter": "Use Framer Motion's AnimatePresence for a rolling number effect, or a scale pop on state change. Make the number massive (text-5xl or text-6xl) using Outfit font.",
+    "real_time_graph": "Use Recharts (Shadcn Chart component). Area chart with a gradient fill (e.g., blue to transparent) and a bright glowing stroke. Smooth transitions are critical.",
+    "status_indicator": "A glowing dot next to the status text. Use ping or custom pulse animation. Green for normal, Amber for low blink rate, Red for drowsy.",
+    "buttons": "Shadcn Button, heavily customized. Primary buttons: bg-white text-black hover:bg-gray-200 (Swiss Brutalist touch) OR blue/purple gradient for high impact CTA.",
+    "icons": "Use lucide-react or @phosphor-icons/react. Clean, consistent stroke widths."
+  },
+  "motion_and_interactions": {
+    "page_load": "Staggered fade-up for dashboard cards using Framer Motion.",
+    "hover_states": "Interactive elements must have clear hover states. Cards lift slightly, button backgrounds brighten.",
+    "chart_animations": "Ensure the chart updates seamlessly without full redraws (recharts handles this nicely with data pushes)."
+  },
+  "media": {
+    "hero_background": {
+      "url": "https://images.pexels.com/photos/7135037/pexels-photo-7135037.jpeg",
+      "description": "Dynamic abstract background with flowing blue and red colors. Use as hero background on the landing page, heavily darkened with a black overlay (e.g. bg-black/80 or gradient overlay) to allow text readability."
+    },
+    "user_avatar": {
+      "url": "https://images.unsplash.com/photo-1758876204260-bdb299fa4374?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxNzV8MHwxfHNlYXJjaHwyfHxwZXJzb24lMjB3b3JraW5nJTIwbGF0ZSUyMGxhcHRvcCUyMGRhcmt8ZW58MHx8fHwxNzc0NjQ1NTM3fDA&ixlib=rb-4.1.0&q=85",
+      "description": "User avatar for the dashboard header."
+    }
+  },
+  "instructions_to_main_agent": [
+    "Install required dependencies: framer-motion, recharts, lucide-react, clsx, tailwind-merge.",
+    "CRITICAL: All interactive and key informational elements MUST include a data-testid attribute (e.g., data-testid='start-camera-btn').",
+    "Use standard raw HTML+Tailwind for the landing page for maximum creative freedom, and customized Shadcn components for the dashboard.",
+    "Do not use generic blue buttons everywhere. Follow the color guide for a premium Linear-like feel.",
+    "Ensure the chart logic can handle a moving window of data (e.g., last 60 seconds) gracefully.",
+    "The webcam feed must not look like a plain video element; overlay grid lines, tracking boxes, or corner accents to achieve the 'health-tech' vibe.",
+    "Never use completely transparent backgrounds for the sticky header; use backdrop-blur and a semi-transparent dark color to prevent text clash on scroll."
+  ]
+}
+

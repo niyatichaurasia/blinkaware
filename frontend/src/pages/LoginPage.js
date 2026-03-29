@@ -1,0 +1,114 @@
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Eye } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
+import { motion } from 'framer-motion';
+
+export function LoginPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    const result = await login(email, password);
+    
+    if (result.success) {
+      navigate('/dashboard');
+    } else {
+      setError(result.error);
+    }
+    
+    setLoading(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="w-full max-w-md"
+      >
+        {/* Logo */}
+        <Link to="/" className="flex items-center justify-center gap-3 mb-8">
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+            <Eye className="w-7 h-7 text-white" />
+          </div>
+          <span className="text-3xl font-bold text-white" style={{ fontFamily: 'Outfit, sans-serif' }}>BlinkAware</span>
+        </Link>
+
+        {/* Login Card */}
+        <div className="p-8 bg-[#111111] border border-white/10 rounded-2xl">
+          <h2 className="text-3xl font-bold text-white mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            Welcome back
+          </h2>
+          <p className="text-gray-400 mb-8" style={{ fontFamily: 'Manrope, sans-serif' }}>
+            Sign in to continue monitoring
+          </p>
+
+          {error && (
+            <div data-testid="login-error" className="mb-6 p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-400 text-sm">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                Email
+              </label>
+              <input
+                type="email"
+                data-testid="login-email-input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                placeholder="you@example.com"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2" style={{ fontFamily: 'Manrope, sans-serif' }}>
+                Password
+              </label>
+              <input
+                type="password"
+                data-testid="login-password-input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full px-4 py-3 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+                placeholder="••••••••"
+              />
+            </div>
+
+            <button
+              type="submit"
+              data-testid="login-submit-btn"
+              disabled={loading}
+              className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-blue-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? 'Signing in...' : 'Sign In'}
+            </button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <p className="text-gray-400" style={{ fontFamily: 'Manrope, sans-serif' }}>
+              Don't have an account?{' '}
+              <Link to="/register" data-testid="go-to-register-link" className="text-blue-400 hover:text-blue-300 font-medium">
+                Sign up
+              </Link>
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}

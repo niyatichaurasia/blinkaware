@@ -1,0 +1,67 @@
+/* BlinkAware App Styles */
+
+/* No global text-align center */
+.App {
+  min-height: 100vh;
+}
+
+/* Custom slider styles */
+input[type="range"].slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+  border-radius: 8px;
+}
+
+input[type="range"].slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(to right, #3B82F6, #8B5CF6);
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+input[type="range"].slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(to right, #3B82F6, #8B5CF6);
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+/* Smooth transitions for interactive elements */
+button,
+a {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Prevent FOUC */
+body {
+  background-color: #050505;
+  color: white;
+}
